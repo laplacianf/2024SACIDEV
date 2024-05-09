@@ -1,0 +1,67 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+
+:root {
+    font-family: "Pretendard", sans-serif;
+    font-weight: 400;
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    color-scheme: light only;
+
+    /* Custom Colors */
+    --default-text: #000000;
+
+    --idevsaf-section: #F5F6F7;
+    --idevsaf-section-dark: #EAEDEF;
+
+    --nav-hover: #F9FAFB;
+    --nav-border: #DDDFE0;
+    --nav-text: #4E5968;
+
+    --section-icon: #808080;
+    --official-text: #F5F6F7;
+
+    --idevsaf-correct: #01B466;
+    --idevsaf-wrong: #FF3333;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+input, textarea {
+    font-family: "Pretendard", sans-serif;
+    font-size: 1em;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #DADFE3;
+}
+
+::-webkit-scrollbar-track {
+    background-color: white;
+    border-left: 1px dashed #DDDFE0;
+}
+
+input {
+    font-family: "Pretendard", sans-serif;
+    font-weight: 400
+}
