@@ -117,6 +117,7 @@ export const execute = (code: string, input: number[]) => {
         }
         
         if (pos < tokens.length) pos++
+        console.log(current.type, stack, pos)
     }
 
     return ans
