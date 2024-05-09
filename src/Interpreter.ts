@@ -1,4 +1,4 @@
-type TokenType = "push" | "jmpb" | "jmpbtmp" | "jmpf" | "add" | "neg" | "dup" | "ascprnt" | "intprnt" | "intinpt" | "chng"
+type TokenType = "push" | "jmpb" | "jmpbtmp" | "jmpf" | "add" | "neg" | "dup" | "ascprnt" | "intprnt" | "intinpt" | "swap" | "rtt"
 
 interface Token {
     type: TokenType
@@ -38,7 +38,8 @@ export const parse = (code: string) => {
         else if (current === "!") parseResult.push({ type: "ascprnt" })
         else if (current === "~") parseResult.push({ type: "intprnt" })
         else if (current === "?") parseResult.push({ type: "intinpt" })
-        else if (current === "*") parseResult.push({ type: "chng" })
+        else if (current === "*") parseResult.push({ type: "swap" })
+        else if (current === "@") parseResult.push({ type: "rtt" })
         else if (current === "[") {
             parseResult.push({ type: "jmpb" })
             parenStack.push({ type: "jmpbtmp", data: [parseResult.length - 1, pos] })
@@ -89,11 +90,16 @@ export const execute = (code: string, input: number[]) => {
         else if (current.type === "ascprnt") ans += String.fromCharCode(pop())
         else if (current.type === "intprnt") ans += pop().toString()
         else if (current.type === "intinpt") stack.push(inputPop())
-        else if (current.type === "chng") {
-            if (stack.length < 2) return
-            const p1 = pop()
-            const p2 = pop()
-            stack.push(p1, p2)
+        else if (current.type === "swap") {
+            const temp = pop()
+            stack.push(temp, pop())
+        }
+        else if (current.type === "rtt") {
+            if (stack.length < 3) return
+            const temp = [stack.at(-3), stack.at(-2), stack.at(-1)] as number[]
+            stack[stack.length - 3] = temp[1]
+            stack[stack.length - 2] = temp[2]
+            stack[stack.length - 1] = temp[0]
         }
         else if (current.type === "jmpb") {
             const p = pop()

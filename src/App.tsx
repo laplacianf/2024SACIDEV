@@ -73,7 +73,7 @@ const NavElement: React.FC<React.PropsWithChildren<NavElementProps>> = (props) =
 const PROB_NAME = ["1", "2", "3", "4", "5", "B1", "B2"]
 
 export const App = () => {
-    const [code, setCode] = useState("")
+    const [code, setCode] = useState<string[]>(new Array(7).fill(""))
     const [probState, setProbState] = useState<ProbState[]>(new Array(7).fill("none"))
     const [probNum, setProbNum] = useState(0)
 
@@ -116,8 +116,12 @@ export const App = () => {
             <div css={css`position: relative;`}>
                 <Editor
                     theme="vs-dark"
-                    value={code}
-                    onChange={(v) => setCode(v ?? "")}
+                    value={code[probNum]}
+                    onChange={(v) => {
+                        const newCode = [...code]
+                        newCode[probNum] = v ?? ""
+                        setCode(newCode)
+                    }}
                 />
                 <div
                     css={css`
@@ -137,7 +141,7 @@ export const App = () => {
                         }
                     `}
                     onClick={() => {
-                        const res = checkValid(probNum, code)
+                        const res = checkValid(probNum, code[probNum])
                         if (res) {
                             EventHandler.trigger("notification", "allowed", "맞았습니다!")
                             setProbState((probState) => {
