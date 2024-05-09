@@ -22,11 +22,11 @@ export const parse = (code: string) => {
             if (pos < code.length) pos++
             let num = 0
             while (pos < code.length) {
-                if ("SFK!~?[]".includes(code[pos])) break
+                if ("SFK!~?[]@*".includes(code[pos])) break
                 if (code[pos] === "A") num++
                 if (pos < code.length) pos++
             }
-            if (pos >= 0) pos++
+            if (pos >= 0) pos--
             parseResult.push({
                 type: "push",
                 data: [num]
@@ -52,6 +52,8 @@ export const parse = (code: string) => {
             parseResult[newPos].data ??= []
             const data = parseResult[newPos].data as number[]
             data[0] = parseResult.length
+
+            parseResult.push({ type: "jmpf", data: [newPos - 1] })
         }
         if (pos < code.length) pos++
     }
@@ -86,7 +88,7 @@ export const execute = (code: string, input: number[]) => {
         if (current.type === "push") stack.push(current.data?.[0] ?? 0)
         else if (current.type === "add") stack.push(pop() + pop())
         else if (current.type === "neg") stack.push(-pop())
-        else if (current.type === "dup") stack.push(stack.length > 0 ? stack[0] : 0)
+        else if (current.type === "dup") stack.push(stack.at(-1) ?? 0)
         else if (current.type === "ascprnt") {
             const temp = pop()
             if (temp < 0) throw new Error("ASCII range error")
