@@ -9,7 +9,7 @@ export const ModalContainer: React.FC = () => {
     useEffect(() => {
         EventHandler.addEventListener("modal", (content: React.ReactNode | null) => {
             setContent(content)
-            if (content === null) document.body.style.overflow = "scroll"
+            if (content === null) document.body.style.overflow = "auto"
             else document.body.style.overflow = "hidden"
         })
     }, [])
@@ -22,7 +22,7 @@ export const ModalContainer: React.FC = () => {
                 position: fixed;
                 top: 0;
                 left: 0;
-                background-color: #00000088;
+                background-color: #000000C0;
                 width: 100%;
                 height: 100%;
                 z-index: 100;

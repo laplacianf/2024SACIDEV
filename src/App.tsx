@@ -10,7 +10,8 @@ import { checkValid } from "./checkValid"
 import { EventHandler } from "./utils/event"
 import { NotiContainer } from "./components/common/Notification"
 import { problemInfo } from "./data/data"
-
+import { ModalContainer } from "./components/common/Modal"
+import { ModalContent } from "./components/ModalContent"
 import Logo from "@assets/logo.svg"
 
 const Title: React.FC<React.PropsWithChildren> = (props) => 
@@ -79,15 +80,35 @@ export const App = () => {
 
     return <div css={css`overflow: hidden; height: 100vh;`}>
         <NotiContainer />
+        <ModalContainer />
         <div
             css={css`
                 border-bottom: 1px solid var(--nav-border);
                 width: 100%;
                 box-sizing: border-box;
+                position: relative;
             `}
         >
-            <div css={css`position: absolute; left: 20px; top: 0; transform: translateY(-19px);`}>
+            <div css={css`position: absolute; left: 20px; top: 50%; transform: translateY(calc(-50% + 2px));`}>
                 <img src={Logo} css={css`height: 100px;`} />
+            </div>
+            <div
+                css={css`
+                    position: absolute;
+                    right: 20px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    padding: 10px 12px;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    
+                    :hover {
+                        background-color: var(--nav-hover);
+                    }
+                `}
+                onClick={() => EventHandler.trigger("modal", <ModalContent />)}
+            >
+                도움말
             </div>
             <HFlexBox
                 css={css`
@@ -163,7 +184,7 @@ export const App = () => {
                     <TextBox size={18} weight={600}>제출</TextBox>
                 </div>
             </div>
-            <div css={css`padding: 24px; overflow-y: auto; white-space: pre;`}>
+            <div css={css`padding: 24px; overflow-y: auto; white-space: pre-wrap;`}>
                 <Title>문제 {PROB_NAME[probNum]}</Title>
                 <VBox height={8} />
                 <div css={css`line-height: 24px;`}>
