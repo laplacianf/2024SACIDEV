@@ -1,7 +1,8 @@
-import { useEffect } from "react"
+// import { useEffect } from "react"
 
 interface ClientEvents {
     "notification": [type: "allowed" | "forbidden", content: string]
+    "modal": [content: (React.ReactNode | null)]
 }
 
 type Event = keyof ClientEvents
@@ -19,8 +20,8 @@ export class EventHandler {
     }
 }
 
-export const useEvent = <T extends Event>(event: T, cb: (...args: ClientEvents[T]) => void) => {
-    useEffect(() => {
-        EventHandler.addEventListener(event, cb)
-    }, [event, cb])
-}
+// export const useEvent = <T extends Event>(event: T, cb: (...args: ClientEvents[T]) => void) => {
+//     useEffect(() => {
+//         EventHandler.addEventListener(event, cb)
+//     }, [event, cb])
+// }

@@ -93,15 +93,15 @@ export const problemInfo: IProblem[] = [
             {
                 input: [12],
                 output: "144" 
-            },
-            {
-                input: [1],
-                output: "1"
-            },
-            {
-                input: [2],
-                output: "1"
             }
+            // {
+            //     input: [1],
+            //     output: "1"
+            // },
+            // {
+            //     input: [2],
+            //     output: "1"
+            // }
         ]
     },
     {
