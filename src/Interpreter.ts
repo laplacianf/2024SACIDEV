@@ -87,7 +87,11 @@ export const execute = (code: string, input: number[]) => {
         else if (current.type === "add") stack.push(pop() + pop())
         else if (current.type === "neg") stack.push(-pop())
         else if (current.type === "dup") stack.push(stack.length > 0 ? stack[0] : 0)
-        else if (current.type === "ascprnt") ans += String.fromCharCode(pop())
+        else if (current.type === "ascprnt") {
+            const temp = pop()
+            if (temp < 0) throw new Error("ASCII range error")
+            ans += String.fromCharCode(pop())
+        }
         else if (current.type === "intprnt") ans += pop().toString()
         else if (current.type === "intinpt") stack.push(inputPop())
         else if (current.type === "swap") {
@@ -103,11 +107,11 @@ export const execute = (code: string, input: number[]) => {
         }
         else if (current.type === "jmpb") {
             const p = pop()
-            if (p < 0) pos = (current.data?.[0] ?? 0) + 1
+            if (p <= 0) pos = (current.data?.[0] ?? 0) - 1
         }
         else if (current.type === "jmpf") {
             const p = pop()
-            if (p >= 0) pos = (current.data?.[0] ?? 0) + 1
+            if (p > 0) pos = (current.data?.[0] ?? 0) + 1
         }
         
         if (pos < tokens.length) pos++
