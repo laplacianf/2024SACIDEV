@@ -92,7 +92,7 @@ export const execute = (code: string, input: number[]) => {
         else if (current.type === "ascprnt") {
             const temp = pop()
             if (temp < 0) throw new Error("ASCII range error")
-            ans += String.fromCharCode(pop())
+            ans += String.fromCharCode(temp)
         }
         else if (current.type === "intprnt") ans += pop().toString()
         else if (current.type === "intinpt") stack.push(inputPop())
@@ -119,6 +119,5 @@ export const execute = (code: string, input: number[]) => {
         if (pos < tokens.length) pos++
         console.log(current.type, stack, pos)
     }
-
     return ans
 }
