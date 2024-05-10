@@ -143,6 +143,15 @@ export const App = () => {
                         newCode[probNum] = v ?? ""
                         setCode(newCode)
                     }}
+                    options={{
+                        matchBrackets: "never",
+                        autoClosingBrackets: "never"
+                    }}
+                    css={css`
+                        .unexpected-closing-bracket {
+                            color: #d4d4d4 !important;
+                        }
+                    `}
                 />
                 <div
                     css={css`
