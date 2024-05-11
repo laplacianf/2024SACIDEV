@@ -128,7 +128,7 @@ export const problemInfo: IProblem[] = [
             {
                 input: [8, 10, 10, 10, 10, 11, 10, 10, 10],
                 output: "11"
-            }
+            },
             {
                 input: [1, 3],
                 output: "3"
