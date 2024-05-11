@@ -53,7 +53,7 @@ export const parse = (code: string) => {
             const data = parseResult[newPos].data as number[]
             data[0] = parseResult.length
 
-            parseResult.push({ type: "jmpf", data: [newPos - 1] })
+            parseResult.push({ type: "jmpf", data: [newPos] })
         }
         if (pos < code.length) pos++
     }
@@ -85,6 +85,8 @@ export const execute = (code: string, input: number[]) => {
 
     while (pos < tokens.length) {
         const current = tokens[pos]
+        console.log(current.type, stack, pos)
+
         if (current.type === "push") stack.push(current.data?.[0] ?? 0)
         else if (current.type === "add") stack.push(pop() + pop())
         else if (current.type === "neg") stack.push(-pop())
@@ -109,15 +111,14 @@ export const execute = (code: string, input: number[]) => {
         }
         else if (current.type === "jmpb") {
             const p = pop()
-            if (p <= 0) pos = (current.data?.[0] ?? 0) - 1
+            if (p <= 0) pos = (current.data?.[0] ?? 0)
         }
         else if (current.type === "jmpf") {
             const p = pop()
-            if (p > 0) pos = (current.data?.[0] ?? 0) + 1
+            if (p > 0) pos = (current.data?.[0] ?? 0)
         }
         
         if (pos < tokens.length) pos++
-        console.log(current.type, stack, pos)
     }
     return ans
 }
