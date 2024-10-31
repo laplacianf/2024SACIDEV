@@ -85,7 +85,6 @@ export const execute = (code: string, input: number[]) => {
 
     while (pos < tokens.length) {
         const current = tokens[pos]
-        console.log(current.type, queue, pos)
 
         if (current.type === "push") queue.push(current.data?.[0] ?? 0)
         else if (current.type === "add") queue.push(pop() + pop())
@@ -99,8 +98,7 @@ export const execute = (code: string, input: number[]) => {
         else if (current.type === "intprnt") ans += pop().toString()
         else if (current.type === "intinpt") queue.push(inputPop())
         else if (current.type === "swap") {
-            const temp = pop()
-            queue.push(temp, pop())
+            [queue[0], queue[1]] = [queue[1], queue[0]]
         }
         else if (current.type === "rtt") {
             const temp = pop()
@@ -116,6 +114,7 @@ export const execute = (code: string, input: number[]) => {
         }
         
         if (pos < tokens.length) pos++
+        console.log(current.type, queue, pos)
     }
     return ans
 }
