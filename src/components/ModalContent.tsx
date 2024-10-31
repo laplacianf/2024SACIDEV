@@ -11,13 +11,8 @@ import Image4 from "@assets/info/slide4.png"
 import Image5 from "@assets/info/slide5.png"
 import Image6 from "@assets/info/slide6.png"
 import Image7 from "@assets/info/slide7.png"
-import Image8 from "@assets/info/slide8.png"
-import Image9 from "@assets/info/slide9.png"
-import Image10 from "@assets/info/slide10.png"
-import Image11 from "@assets/info/slide11.png"
-import Image12 from "@assets/info/slide12.png"
 
-const images = [Image1, Image2, Image3, Image4, Image5, Image6, Image7, Image8, Image9, Image10, Image11, Image12]
+const images = [Image1, Image2, Image3, Image4, Image5, Image6, Image7]
 
 export const ModalContent: React.FC = () => { 
     const [idx, setIdx] = useState(0)
