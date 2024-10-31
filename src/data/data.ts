@@ -202,6 +202,17 @@ export const problemInfo: IProblem[] = [
         ]
     },
     {
+        problem: "이번 SAC의 슬로건을 출력하여라.\n\n예시 입출력은 주어지지 않는다.",
+        example: [
+        ],
+        test: [
+            {
+                input: [],
+                output: "Ready, Set And Cue!"
+            }
+        ]
+    },
+    {
         problem: "6개의 IDEV 부스 문제를 모두 풀어 심심해진 길쭉이는 다음 문제에 대해 고민을 해보기 시작했다.\n'어떤 자연수 N에 대해 N! 뒤에 붙는 0의 개수는 몇개일까?'\n길쭉이를 도와 위 질문에 답을 해줄 수 있는 프로그램을 작성하자.\n\n첫 번째 입력으로 자연수 N이 주어진다.",
         example: [
             {

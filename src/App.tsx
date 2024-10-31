@@ -71,7 +71,7 @@ const NavElement: React.FC<React.PropsWithChildren<NavElementProps>> = (props) =
     </div>
 }
 
-const PROB_NAME = ["1", "2", "3", "4", "5", "6", "B1", "B2"]
+const PROB_NAME = ["1", "2", "3", "4", "5", "6", "B1", "B2", "B3"]
 
 export const App = () => {
     const [code, setCode] = useState<string[]>(new Array(PROB_NAME.length).fill(""))
