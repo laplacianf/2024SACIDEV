@@ -90,7 +90,7 @@ export const execute = (code: string, input: number[]) => {
         if (current.type === "push") queue.push(current.data?.[0] ?? 0)
         else if (current.type === "add") queue.push(pop() + pop())
         else if (current.type === "neg") queue.push(-pop())
-        else if (current.type === "clone") queue.push(queue.at(0) ?? 0)
+        else if (current.type === "clone") queue.push(queue[0] ?? 0)
         else if (current.type === "ascprnt") {
             const temp = pop()
             if (temp < 0) throw new Error("ASCII range error")
