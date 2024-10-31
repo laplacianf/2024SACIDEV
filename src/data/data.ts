@@ -12,7 +12,7 @@ interface IProblem {
 
 export const problemInfo: IProblem[] = [
     {
-        problem: "이번 SAF에는 많은 연구회가 부스를 운영한다. 그 중 N개의 부스는 형설관 3층에, M개의 부스는 형설관 4층에 설치되어 있다. 길쭉이는 부스를 모두 방문하려고 하는데, 문득 총 부스의 개수가 궁금해졌다. 길쭉이를 도와 연구회 부스의 개수를 출력하는 프로그램을 작성하시오.\n\n첫 번째 입력으로 N, 두 번째 입력으로 M이 주어진다.",
+        problem: "문가온 바보",
         example: [
             {
                 input: [3, 2],
@@ -212,6 +212,29 @@ export const problemInfo: IProblem[] = [
             {
                 input: [49],
                 output: "47"
+            }
+        ]
+    },
+    {
+        problem: "문가온 바보",
+        example: [
+            {
+                input: [3, 2],
+                output: "5"
+            }
+        ],
+        test: [
+            {
+                input: [3, 2],
+                output: "5"
+            },
+            {
+                input: [46, 92],
+                output: "138"
+            },
+            {
+                input: [-329, 329],
+                output: "0"
             }
         ]
     }

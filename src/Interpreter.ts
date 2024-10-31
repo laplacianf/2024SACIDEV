@@ -1,4 +1,4 @@
-type TokenType = "push" | "jmpb" | "jmpbtmp" | "jmpf" | "add" | "neg" | "dup" | "ascprnt" | "intprnt" | "intinpt" | "swap" | "rtt"
+type TokenType = "push" | "jmpb" | "jmpbtmp" | "jmpf" | "add" | "neg" | "clone" | "ascprnt" | "intprnt" | "intinpt" | "swap" | "rtt"
 
 interface Token {
     type: TokenType
@@ -22,7 +22,7 @@ export const parse = (code: string) => {
             if (pos < code.length) pos++
             let num = 0
             while (pos < code.length) {
-                if ("SFK!~?[]@*".includes(code[pos])) break
+                if ("SCQ!~?[]@*".includes(code[pos])) break
                 if (code[pos] === "A") num++
                 if (pos < code.length) pos++
             }
@@ -33,8 +33,8 @@ export const parse = (code: string) => {
             })
         }
         else if (current === "A") parseResult.push({ type: "add" })
-        else if (current === "F") parseResult.push({ type: "neg" })
-        else if (current === "K") parseResult.push({ type: "dup" })
+        else if (current === "C") parseResult.push({ type: "neg" })
+        else if (current === "Q") parseResult.push({ type: "clone" })
         else if (current === "!") parseResult.push({ type: "ascprnt" })
         else if (current === "~") parseResult.push({ type: "intprnt" })
         else if (current === "?") parseResult.push({ type: "intinpt" })
@@ -68,14 +68,14 @@ export const parse = (code: string) => {
 
 export const execute = (code: string, input: number[]) => {
     const tokens = parse(code)
-    const stack: number[] = []
+    const queue: number[] = []
     input.reverse()
     let ans = ""
     let pos = 0
     
     const pop = () => {
-        if (stack.length === 0) return 0
-        return stack.pop() as number
+        if (queue.length === 0) return 0
+        return queue.shift() as number
     }
 
     const inputPop = () => {
@@ -85,29 +85,26 @@ export const execute = (code: string, input: number[]) => {
 
     while (pos < tokens.length) {
         const current = tokens[pos]
-        console.log(current.type, stack, pos)
+        console.log(current.type, queue, pos)
 
-        if (current.type === "push") stack.push(current.data?.[0] ?? 0)
-        else if (current.type === "add") stack.push(pop() + pop())
-        else if (current.type === "neg") stack.push(-pop())
-        else if (current.type === "dup") stack.push(stack.at(-1) ?? 0)
+        if (current.type === "push") queue.push(current.data?.[0] ?? 0)
+        else if (current.type === "add") queue.push(pop() + pop())
+        else if (current.type === "neg") queue.push(-pop())
+        else if (current.type === "clone") queue.push(queue.at(0) ?? 0)
         else if (current.type === "ascprnt") {
             const temp = pop()
             if (temp < 0) throw new Error("ASCII range error")
             ans += String.fromCharCode(temp)
         }
         else if (current.type === "intprnt") ans += pop().toString()
-        else if (current.type === "intinpt") stack.push(inputPop())
+        else if (current.type === "intinpt") queue.push(inputPop())
         else if (current.type === "swap") {
             const temp = pop()
-            stack.push(temp, pop())
+            queue.push(temp, pop())
         }
         else if (current.type === "rtt") {
-            if (stack.length < 3) return
-            const temp = [stack.at(-3), stack.at(-2), stack.at(-1)] as number[]
-            stack[stack.length - 3] = temp[1]
-            stack[stack.length - 2] = temp[2]
-            stack[stack.length - 1] = temp[0]
+            const temp = pop()
+            queue.push(temp)
         }
         else if (current.type === "jmpb") {
             const p = pop()

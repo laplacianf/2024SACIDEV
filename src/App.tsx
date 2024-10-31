@@ -53,7 +53,7 @@ const NavElement: React.FC<React.PropsWithChildren<NavElementProps>> = (props) =
             box-sizing: border-box;
             background-color: ${props.selected ? "var(--nav-hover)" : "inherit"};
             font-variant-numeric: tabular-nums;
-            border-bottom: ${props.selected ? "3px solid #53B0AE" : "none"};
+            border-bottom: ${props.selected ? "3px solid var(--idevsaf-official)" : "none"};
 
             :hover {
                 background-color: var(--nav-hover);
@@ -71,11 +71,11 @@ const NavElement: React.FC<React.PropsWithChildren<NavElementProps>> = (props) =
     </div>
 }
 
-const PROB_NAME = ["1", "2", "3", "4", "5", "B1", "B2"]
+const PROB_NAME = ["1", "2", "3", "4", "5", "6", "B1", "B2"]
 
 export const App = () => {
-    const [code, setCode] = useState<string[]>(new Array(7).fill(""))
-    const [probState, setProbState] = useState<ProbState[]>(new Array(7).fill("none"))
+    const [code, setCode] = useState<string[]>(new Array(PROB_NAME.length).fill(""))
+    const [probState, setProbState] = useState<ProbState[]>(new Array(PROB_NAME.length).fill("none"))
     const [probNum, setProbNum] = useState(0)
 
     return <div css={css`overflow: hidden; height: 100vh;`}>
@@ -119,7 +119,7 @@ export const App = () => {
                 gap={24}
                 center
             >
-                {new Array(7)
+                {new Array(PROB_NAME.length)
                     .fill(null)
                     .map((_v, i) => 
                         <NavElement
