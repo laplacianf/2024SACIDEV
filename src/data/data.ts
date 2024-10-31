@@ -43,11 +43,11 @@ export const problemInfo: IProblem[] = [
             },
             {
                 input: [3],
-                output: "123"
+                output: "321"
             },
             {
                 input: [5],
-                output: "12345"
+                output: "54321"
             }
         ],
         test: [
@@ -57,15 +57,15 @@ export const problemInfo: IProblem[] = [
             },
             {
                 input: [3],
-                output: "123"
+                output: "321"
             },
             {
                 input: [5],
-                output: "12345"
+                output: "54321"
             },
             {
                 input: [11],
-                output: "1234567891011"
+                output: "1110987654321"
             }
         ]
     },
