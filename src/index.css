@@ -13,8 +13,8 @@
     /* Custom Colors */
     --default-text: #000000;
 
-    --idevsaf-section: #F5F6F7;
-    --idevsaf-section-dark: #EAEDEF;
+    --idevsac-section: #F5F6F7;
+    --idevsac-section-dark: #EAEDEF;
 
     --nav-hover: #F9FAFB;
     --nav-border: #DDDFE0;
@@ -23,10 +23,10 @@
     --section-icon: #808080;
     --official-text: #F5F6F7;
 
-    --idevsaf-correct: #01B466;
-    --idevsaf-wrong: #FF3333;
+    --idevsac-correct: #01B466;
+    --idevsac-wrong: #FF3333;
 
-    --idevsaf-official: #EB6D64;
+    --idevsac-official: #1177EE;
 }
 
 body {

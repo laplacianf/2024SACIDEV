@@ -27,7 +27,7 @@ const Subtitle: React.FC<React.PropsWithChildren> = (props) =>
 const Section: React.FC<React.PropsWithChildren> = (props) =>
     <Card
         css={css`
-            background-color: var(--idevsaf-section);
+            background-color: var(--idevsac-section);
             align-items: start;
         `}
     >
@@ -43,7 +43,7 @@ interface NavElementProps {
 }
 
 const NavElement: React.FC<React.PropsWithChildren<NavElementProps>> = (props) => {
-    const color = props.state === "none" ? "inherit" : `var(--idevsaf-${props.state})`
+    const color = props.state === "none" ? "inherit" : `var(--idevsac-${props.state})`
 
     return <div
         css={css`
@@ -53,7 +53,7 @@ const NavElement: React.FC<React.PropsWithChildren<NavElementProps>> = (props) =
             box-sizing: border-box;
             background-color: ${props.selected ? "var(--nav-hover)" : "inherit"};
             font-variant-numeric: tabular-nums;
-            border-bottom: ${props.selected ? "3px solid var(--idevsaf-official)" : "none"};
+            border-bottom: ${props.selected ? "3px solid var(--idevsac-official)" : "none"};
 
             :hover {
                 background-color: var(--nav-hover);
